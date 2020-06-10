@@ -1,0 +1,8 @@
+.Todo{
+  width: 300px;
+  height: fit-content;
+}
+.current{
+  background-color: #3548F4;
+  color: white;
+}
