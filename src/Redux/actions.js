@@ -1,3 +1,5 @@
+import { todoAPI } from '../api/api';
+
  export const GET_TODOS = 'GET_TODOS'
 
  export const PUT_TODOS = 'PUT_TODOS'
@@ -39,3 +41,13 @@ export const setTodos = todos =>({
   type: SET_TODOS,
   todos
 })
+
+
+// Thunks
+
+export const getAllTasks = () => async (dispatch) => {
+  debugger
+  let response = await todoAPI.getAllTasks()
+  dispatch(setTodos(response))
+  return true;
+}
