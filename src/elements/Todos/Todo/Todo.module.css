@@ -6,3 +6,14 @@
   background-color: #3548F4;
   color: white;
 }
+.changeInput{
+  outline: none;
+  border: none;
+  padding: 0px;
+  resize: none;
+}
+.changeInput:active{
+  outline: none;
+}
+.deadline{}
+  

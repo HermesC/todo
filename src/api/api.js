@@ -1,5 +1,6 @@
 import * as axios from 'axios'
 
+
 const axiosTodo = axios.create({
     baseURL: 'http://todoBackEnd/'
 })
@@ -20,5 +21,9 @@ export const todoAPI = {
   async deleteTask(id) {
     let response = await axiosTodo.delete(`?id=${id}`)
     return response.data
+  },
+  async addTask(newTask) {
+    let response = await axiosTodo.post('', newTask)
+    return response.data;
   }
 }

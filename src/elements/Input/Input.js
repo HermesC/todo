@@ -1,19 +1,19 @@
 import { connect } from 'react-redux';
 import React from 'react';
+
 import { mapDispatchToProps } from '../../Redux/indexRedux';
+import Controls from '../Controls/Controls';
 import s from './Input.module.css'
 
 class Input extends React.Component{
   constructor(props){
     super(props)
     this.state = {
-      inputValue: ''
+      inputValue: '',
+      id: 0
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.state = {
-      id: 0
-    }
   }
   handleChange (event){
     this.setState({inputValue: event.target.value})
@@ -27,7 +27,7 @@ class Input extends React.Component{
       state: 'current',
       id: this.state.id
     })
-    this.setState({id: this.state.id + 1})
+    this.setState({id: this.state.id + 1, inputValue: ''})
   }
   render () {
     return (
@@ -37,6 +37,7 @@ class Input extends React.Component{
           <form onSubmit={this.handleSubmit}>
             <input onChange={this.handleChange}type="text"className={s.input} maxLength={250} value={this.state.inputValue} placeholder="Мне нужно..."/>
           </form>
+          <Controls />
         </div>
     </div>
   )

@@ -6,10 +6,16 @@ import Todo from './Todo/Todo';
 import s from './Todos.module.css'
 
 const Todos = (props) => {
-
-  let todos = ''
+  let filteredTodos = ''
   if (props.todos)
-  todos = props.todos.map ((todo , i)=> <Todo key={i} data={todo}/>)
+  filteredTodos = props.todos.filter ((todo , i)=> {
+    if (props.filter != 'all'){
+      if (props.filter === todo.state || (
+          props.filter === 'current' && todo.state === 'urgent')) return true
+      else return false
+    } else return true
+  })
+  const todos  = filteredTodos.map(todo => <Todo key={todo.id} data={todo}/ >)
   return (
     <div className={s.Todos}>
     {todos}

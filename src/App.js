@@ -1,10 +1,11 @@
-import React, {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
+import React, {useEffect} from 'react';
 
-import { create, getAllTasks } from './Redux/actions';
+import { addTask, getAllTasks } from './Redux/actions';
 import Input from './elements/Input/Input';
 import Todos from './elements/Todos/Todos';
 import s from './App.module.css';
+
 
 function App() {
   const dispatch = useDispatch()
@@ -14,7 +15,7 @@ function App() {
   }, [dispatch])
   return (
     <div className={s.App}>
-      <Input createTodo={create}/>
+      <Input createTodo={addTask}/>
       <Todos />
     </div>
   );

@@ -2,9 +2,11 @@ import {
   CHANGE_TODO,
   CREATE,
   DELETE,
+  DO_ALL,
   SET_FILTER,
   SET_TODOS
 } from '../actions';
+
 const initialState = {
   filter: 'current',
   todos: []
@@ -30,7 +32,15 @@ function clientReducer (state = initialState, action){
     }else{
       throw new Error('clientReducer:Cannot find an element!')
     }
+    case DO_ALL:
+    const updatedTodos = state.todos.map(todo => {
+      todo.state = 'done'
+      return todo
+    }
+    )
+    return {filter: state.filter, todos: updatedTodos}
     case SET_FILTER:
+    debugger
     return {filter: action.filter, todos: state.todos}
     default: return state
   }
