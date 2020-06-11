@@ -14,8 +14,8 @@ export const todoAPI = {
     let response = await axiosTodo.get('')
     return response.data
   },
-  async updateTask(id, newData) {
-    let response = await axiosTodo.post('', newData)
+  async updateTask(id, changes) {
+    let response = await axiosTodo.put('', {id, changes})
     return response.data
   },
   async deleteTask(id) {

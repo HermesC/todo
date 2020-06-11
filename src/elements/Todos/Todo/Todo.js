@@ -1,9 +1,11 @@
 import { connect } from 'react-redux';
-import React, { useRef } from  'react'
-import { useState } from 'react'
-import { drag, drop } from '../../../Redux/dragAndDropActions';
-import s from './Todo.module.css'
 import { useFormik } from 'formik'
+import React, { useRef, useState } from 'react';
+
+import { drag, drop } from '../../../Redux/dragAndDropActions';
+import { updateTask } from '../../../Redux/actions';
+import s from './Todo.module.css'
+
 
 const Todo = (props)=>{
   const [todo, setTodo] = useState(props.data)
@@ -15,10 +17,11 @@ const Todo = (props)=>{
      deadline: todo.deadline
    },
    onSubmit: (values) => {
-     
+
      for (let child of form.current.children) {
        child.setAttribute('readOnly', true);
      }
+     props.updateTask(todo.id,values)
    }
   })
 
@@ -59,4 +62,4 @@ const mapStateToProps = (state)=> ({
   draggedElementData: state.dragAndDropReducer.todoDrag,
   replacedElementData: state.dragAndDropReducer.todoDrop
 })
-export default connect (mapStateToProps, { drag, drop })(Todo)
+export default connect (mapStateToProps, { drag, drop, updateTask })(Todo)

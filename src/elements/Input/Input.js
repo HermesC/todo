@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import React from 'react';
-
 import { mapDispatchToProps } from '../../Redux/indexRedux';
 import Controls from '../Controls/Controls';
 import s from './Input.module.css'
@@ -20,12 +19,11 @@ class Input extends React.Component{
   }
   handleSubmit (event){
     event.preventDefault()
-    this.props.createTodo({
+    this.props.addTask({
       title:` Задание ${this.state.id + 1}`,
       body: this.state.inputValue,
       deadline: '00:00',
-      state: 'current',
-      id: this.state.id
+      state: 'current'
     })
     this.setState({id: this.state.id + 1, inputValue: ''})
   }

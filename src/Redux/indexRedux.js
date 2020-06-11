@@ -1,8 +1,9 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
-import { create } from './actions';
+import { addTask, create } from './actions';
 import rootReducer from './reducers/rootReducer';
+
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
@@ -19,5 +20,6 @@ export function mapLastIdToProps (state){
   }
 }
 export const mapDispatchToProps = dispatch => ({
-  createTodo: (todo) => dispatch(create(todo))
+  createTodo: (todo) => dispatch(create(todo)),
+  addTask: (todo) => dispatch(addTask(todo))
 })

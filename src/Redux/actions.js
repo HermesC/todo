@@ -57,9 +57,18 @@ export const getAllTasks = () => async (dispatch) => {
   dispatch(setTodos(response))
   return true;
 }
-export const addTask = (todo) => async (dispatch) => {
-  let response = await todoAPI.addTask(todo)
+export const addTask = (newTask) => async (dispatch) => {
+  let response = await todoAPI.addTask(newTask)
   if (response){
+    debugger
      dispatch(create(response.newTask))
   } else {/*ERROR HANDLING*/}
+}
+export const updateTask = (id,changes) => async (dispatch) =>{
+  let response = await todoAPI.updateTask(id,changes)
+  if (response){
+    dispatch(change(id,changes))
+  }else {
+
+  }
 }
