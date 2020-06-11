@@ -60,6 +60,6 @@ export const getAllTasks = () => async (dispatch) => {
 export const addTask = (todo) => async (dispatch) => {
   let response = await todoAPI.addTask(todo)
   if (response){
-     dispatch(create(todo))
+     dispatch(create(response.newTask))
   } else {/*ERROR HANDLING*/}
 }
