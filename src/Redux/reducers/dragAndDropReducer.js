@@ -2,12 +2,16 @@ import {
   DRAG,
   DROP
 } from '../dragAndDropActions';
-function dragAndDropReducer (state = {}, action){
+const initialState = {
+  todoDrag: {},
+  todoDrop: {}
+}
+function dragAndDropReducer (state = initialState, action){
   switch (action.type) {
     case DRAG:
-      return action.todo
+      return { todoDrag: action.todo, todoDrop: {}}
     case DROP:
-      return state
+      return {todoDrag: state.todoDrag, todoDrop: action.todo}
     default: return state
   }
 }

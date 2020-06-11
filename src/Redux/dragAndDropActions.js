@@ -1,11 +1,13 @@
 export const DRAG = 'DRAG'
 export const DROP= 'DROP'
-export const drag = todo => ({
+export const drag = (todo) => ({
   type: DRAG,
   todo
+
 })
-export const drop = () => (
+export const drop = (todo) => (
   {
-    type: DROP
+    type: DROP,
+    todo
   }
 )

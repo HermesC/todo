@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import React, { useState } from 'react';
+import React from 'react';
 import { mapDispatchToProps } from '../../Redux/indexRedux';
 import s from './Input.module.css'
 
@@ -11,6 +11,9 @@ class Input extends React.Component{
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.state = {
+      id: 0
+    }
   }
   handleChange (event){
     this.setState({inputValue: event.target.value})
@@ -18,11 +21,13 @@ class Input extends React.Component{
   handleSubmit (event){
     event.preventDefault()
     this.props.createTodo({
-      title:` Задание ${this.props.lastId + 1}`,
+      title:` Задание ${this.state.id + 1}`,
       body: this.state.inputValue,
       deadline: '00:00',
-      state: 'current'
+      state: 'current',
+      id: this.state.id
     })
+    this.setState({id: this.state.id + 1})
   }
   render () {
     return (

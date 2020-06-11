@@ -1,4 +1,4 @@
-import {createStore, dispatch} from 'redux'
+import {createStore} from 'redux'
 import { create } from './actions';
 import rootReducer from './reducers/rootReducer';
 

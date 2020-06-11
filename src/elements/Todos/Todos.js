@@ -9,7 +9,7 @@ const Todos = (props) => {
 
   let todos = ''
   if (props.todos)
-  todos = props.todos.map (todo => <Todo data={todo}/>)
+  todos = props.todos.map ((todo , i)=> <Todo key={i} data={todo}/>)
   return (
     <div className={s.Todos}>
     {todos}
