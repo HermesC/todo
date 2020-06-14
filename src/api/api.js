@@ -18,6 +18,10 @@ export const todoAPI = {
     let response = await axiosTodo.put('', {id, changes})
     return response.data
   },
+  async updateAllTasks(changes) {
+    let response = await axiosTodo.put('all', {changes})
+    return response.data
+  },
   async deleteTask(id) {
     let response = await axiosTodo.delete(`?id=${id}`)
     return response.data

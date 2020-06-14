@@ -1,19 +1,91 @@
+:root{
+  --current: #3366ff;
+  --titleHeight: 20px;
+}
 .Todo{
-  width: 300px;
+  display: flex;
+  flex-direction: column;
   height: fit-content;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+}
+
+
+.title{
+  height: var(--titleHeight);
+  padding: 5px 10px 5px 10px;
+  color: white;
+  display: flex;
+  width: auto;
+  border-radius: 15px;
 }
 .current{
-  background-color: #3548F4;
-  color: white;
+  background-color: var(--current);
 }
-.changeInput{
+.expired{
+  background-color: #EF0505;
+}
+.done{
+  background-color: #40B517;
+}
+.urgent{
+  background-color: #FF9D0A;
+}
+.titleWrapper{
+  display: flex;
+}
+.deadlineWrapper {
+  display: flex;
+}
+.Todo input{
   outline: none;
   border: none;
-  padding: 0px;
+  size: 20px;
   resize: none;
+  width: fit-content;
+  height: var(--titleHeight);
+  text-overflow: ellipsis;
 }
 .changeInput:active{
   outline: none;
 }
-.deadline{}
-  
+.deadline{
+  margin-left: 10px;
+  background-color: transparent;
+}
+.todoBody{
+  background-color: transparent;
+  padding: 10px;
+}
+.edit{
+    border: 2px solid black;
+  }
+.trash{
+  position: relative;
+  display: none;
+  background: var(--current);
+  outline: none;
+  border: none;
+  height: var(--titleHeight);
+  cursor: pointer;
+  align-self: flex-end;
+}
+.trashImg{
+  height: calc(var(--titleHeight) + 5px);
+  position:relative;
+  display: none;
+  left: 10px;
+}
+.imgWrapper{
+  background-color: inherit;
+  position: relative;
+  width: 70px;
+  left: -40px;
+  height: calc(var(--titleHeight) + 10px);
+  border-radius: 15px;
+}
+.submit{
+  display: none;
+}

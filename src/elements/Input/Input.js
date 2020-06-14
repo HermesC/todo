@@ -1,15 +1,17 @@
 import { connect } from 'react-redux';
 import React from 'react';
-import { mapDispatchToProps } from '../../Redux/indexRedux';
+
+import { createTaskDate, createTaskState } from '../../common/helpers';
+import { inputStateToProps, mapDispatchToProps } from '../../Redux/indexRedux';
 import Controls from '../Controls/Controls';
 import s from './Input.module.css'
 
+export const URGENT_SYMBOL = '!срочно'
 class Input extends React.Component{
   constructor(props){
     super(props)
     this.state = {
-      inputValue: '',
-      id: 0
+      inputValue: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -19,13 +21,20 @@ class Input extends React.Component{
   }
   handleSubmit (event){
     event.preventDefault()
+    let completeOffset = 3
+    let body = this.state.inputValue
+    if (this.state.inputValue.includes(URGENT_SYMBOL)){
+      completeOffset = 1
+      body = this.state.inputValue.replace(URGENT_SYMBOL, '')
+    }
+
     this.props.addTask({
-      title:` Задание ${this.state.id + 1}`,
-      body: this.state.inputValue,
-      deadline: '00:00',
-      state: 'current'
+      title:` Задание ${this.props.lastId}`,
+      body: body,
+      deadline: createTaskDate(new Date(),completeOffset),
+      state: createTaskState(this.state.inputValue, 'current', 'urgent', URGENT_SYMBOL)
     })
-    this.setState({id: this.state.id + 1, inputValue: ''})
+    this.setState({inputValue :''})
   }
   render () {
     return (
@@ -41,4 +50,4 @@ class Input extends React.Component{
   )
 }
 }
-export default connect (null, mapDispatchToProps)(Input)
+export default connect (inputStateToProps, mapDispatchToProps)(Input)

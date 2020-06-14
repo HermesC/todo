@@ -1,29 +1,29 @@
 import { connect } from 'react-redux';
 import React from  'react'
-import { doAll, setFilter } from '../../Redux/actions';
+import { doAllTasks, setFilter } from '../../Redux/actions';
 import s from './Controls.module.css'
 
 const Controls = (props) => {
   function handleChange(event){
-    if (event.target.value != 'doAll')
+    if (event.target.value != 'doAll'){
      props.setFilter(event.target.value)
-     else props.doAll()
+   } else props.doAllTasks({state: 'done'})
   }
   return (
     <div className={s.Controls}>
-    <label for="filters">Фильтры</label>
-      <select name="filters"onChange={handleChange}>
-      	<option value="all" selected>Все</option>
+    <label htmlFor="filters">Фильтры</label>
+      <select name="filters" defaultValue="all"onChange={handleChange}>
+      	<option value="all">Все</option>
       	<option value="current">Текущие</option>
       	<option value="urgent">Срочные</option>
       	<option value="done">Выполненные</option>
-        <option value="dead">Просроченные</option>
+        <option value="expired">Просроченные</option>
       </select>
       <div>
-        <label for='doAll'>Выполнить все</label>
+        <label htmlFor='doAll'>Выполнить все</label>
         <input onClick={handleChange} type="radio" id="doAll" name="filters" value="doAll"/>
       </div>
     </div>
   )
 }
-export default connect (null, { setFilter , doAll})(Controls)
+export default connect (null, { setFilter , doAllTasks})(Controls)

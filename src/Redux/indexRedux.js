@@ -23,3 +23,8 @@ export const mapDispatchToProps = dispatch => ({
   createTodo: (todo) => dispatch(create(todo)),
   addTask: (todo) => dispatch(addTask(todo))
 })
+export function inputStateToProps  (state){
+  return {
+    lastId: state.clientReducer.lastId + 1
+  }
+}

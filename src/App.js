@@ -10,7 +10,9 @@ import s from './App.module.css';
 function App() {
   const dispatch = useDispatch()
   useEffect(() => {
+    
     dispatch(getAllTasks())
+
   }, [dispatch])
   return (
     <div className={s.App}>
