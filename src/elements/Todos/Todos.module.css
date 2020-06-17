@@ -1,5 +1,9 @@
 .Todos{
-  /*display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 15px;*/
+  width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.layout{
+  position: relative;
+  display: flex;
 }

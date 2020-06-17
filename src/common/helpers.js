@@ -11,7 +11,7 @@ export function createTaskDate(referenceDate, offset){
   resDate += '-'  + referenceDate.getDate()
   return resDate
 }
-export function createTaskState(text, defaultState, transitionState= 'urgent',symbol = '!срочно'){
+export function createTaskState (text, defaultState, transitionState= 'urgent', symbol = '!срочно'){
   if (text.includes(symbol)){
     text = text.replace(symbol, '')
     return transitionState
@@ -33,9 +33,9 @@ export function isExpired (checkedDeadline, templateDeadline){
       (checkedDeadlineObj.day < templateDeadlineObj.day)) return true
   return false
 }
-export function truncateText (text, limiter){
+export function truncateText (text, limiter, truncationString = '...'){
   if (text.length > limiter){
-    return text.slice(0, limiter - 3) + '...'
+    return text.slice(0, limiter - truncationString.length) + truncationString
   }
 }
 export function bindParameters (func, params){
@@ -55,6 +55,20 @@ export function taskComparison (task, value){
   if (task.state === value) return true
   return false
 }
-export function createLayout (todoArr){
-  return todoArr.map((todo, i) => ({i: todo.id, x: i * 2, y: 0, w: 2, h: 1}))
+export function createLayout (todoArr, COLS){
+  const res = []
+  let cols = 0, counter = 0, rows = 0
+  todoArr.map((todo, i) => {
+    if (counter >= COLS){
+       cols++
+       rows = 0
+       counter = 0
+       if (cols > COLS) cols = 0
+    }
+    counter++
+    res.push({i: todo.id, x: rows, y: cols, w: 1, h: 1})
+    rows++
+  })
+  return res
+
 }

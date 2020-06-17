@@ -1,6 +1,11 @@
+.Input{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .title{
   font-size: 34px;
-  text-align: center;
+  align-self: center;
 }
 .input{
   height: 25px;
@@ -11,4 +16,7 @@
 .input:focus{
   border: 1px solid blue;
   outline: none;
+}
+.form{
+  align-self: center;
 }

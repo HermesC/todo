@@ -68,8 +68,9 @@ const Todo = (props)=>{
     props.updateTask({state: 'expired'})
   }
   setLifecycleCheck()
+
   return (
-    <div ref={todoContainer} onDoubleClick={handler} onMouseOver={handler} onMouseOut={handler} className={s.Todo}>
+    <div className={s.Todo} onDoubleClick={handler} onMouseOver={handler} onMouseOut={handler}>
         <form ref={form} onSubmit={formik.handleSubmit}>
             <div className={s.titleWrapper}><input data-type={TODO_TYPE} onChange={formik.handleChange} readOnly value={formik.values.title}onBlur={handler} name='title' className={todoTitleStyle }/><div className={s.imgWrapper}>{trash}</div></div>
             <div className={s.deadlineWrapper}><input type="date"data-type={TODO_TYPE} onChange={formik.handleChange}

@@ -4,8 +4,8 @@
 }
 .Todo{
   display: flex;
-  flex-direction: column;
   height: fit-content;
+  width: fit-content;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   text-overflow: ellipsis;

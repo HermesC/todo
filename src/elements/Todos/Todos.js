@@ -10,7 +10,7 @@ import { mapStateToProps } from '../../Redux/indexRedux'
 import Todo from './Todo/Todo';
 import s from './Todos.module.css'
 
-/*const Todos = (props) => {
+const Todos = (props) => {
   let filteredTodos = ''
   let todos = ''
   let layoutCustom = null
@@ -25,36 +25,18 @@ import s from './Todos.module.css'
     })
 
   filteredTodos  = sortByPriorities(filteredTodos, ['expired', 'urgent', 'current', 'done'], taskComparison)
-  layoutCustom = createLayout (filteredTodos)
-  todos = filteredTodos.map((todo, i) => {
-  return<Todo key={todo.id} data={todo}/ >})
+  layoutCustom = createLayout (filteredTodos, 3)
+  todos = filteredTodos.map( todo => {
+    return <div key={todo.id}><Todo key={todo.id} dataGrid={todo.id} data={todo}/ ></div>
   }
-  const testLayout = [{i: 'a', x: 0, y: 0, w: 1, h: 2, static: true},
-      {i: 'b', x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4},
-      {i: 'c', x: 4, y: 0, w: 1, h: 2}]
-  const resTodos = layoutCustom ? <GridLayout layout={layoutCustom}cols={3}>{todos}</GridLayout> : todos
-  debugger
+)
+  }
+  const resTodos = layoutCustom ? <GridLayout layout={layoutCustom} rowHeight={100} className={s.layout} cols={3} width={1200}>{todos}</GridLayout> : todos
   return (
     <div className={s.Todos}>
     {resTodos}
     </div>
   )
-}*/
-class Todos extends React.Component {
-  render() {
-    const layout = [
-        {i: 'a', x: 0, y: 0, w: 1, h: 2, static: true},
-        {i: 'b', x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4},
-        {i: 'c', x: 4, y: 0, w: 1, h: 2}];
-    return (
-      <div className={s.Todos}>
-        <GridLayout className="layout" layout={layout}cols={12} rowHeight={30} width={1200}>
-          <div key="a" data-grid={{x: 0, y: 0, w: 1, h: 2, static: true}}>a</div>
-          <div key="b" data-grid={{x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4}}>b</div>
-          <div key="c" data-grid={{x: 4, y: 0, w: 1, h: 2}}>c</div>
-        </GridLayout>
-      </div>
-    )
-  }
 }
+
 export default connect (mapStateToProps, null)(Todos)
