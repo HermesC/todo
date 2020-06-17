@@ -73,7 +73,7 @@ const Todo = (props)=>{
         <form ref={form} onSubmit={formik.handleSubmit}>
             <div className={s.titleWrapper}><input data-type={TODO_TYPE} onChange={formik.handleChange} readOnly value={formik.values.title}onBlur={handler} name='title' className={todoTitleStyle }/><div className={s.imgWrapper}>{trash}</div></div>
             <div className={s.deadlineWrapper}><input type="date"data-type={TODO_TYPE} onChange={formik.handleChange}
-            onBlur={handler} name='deadline'  value={formik.values.deadline}className={todoDeadlineStyle}/></div>
+            onBlur={handler} name='deadline'  value={formik.values.deadline} className={todoDeadlineStyle}/></div>
             <input data-type={TODO_TYPE} onChange={formik.handleChange} readOnly onBlur={handler} name='body' className={todoBodyStyle} value={formik.values.body}/>
             <button className={s.submit} type="submit">Submit</button>
         </form>
