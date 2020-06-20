@@ -1,7 +1,4 @@
-import {
-  GET_TODOS,
-  PUT_TODOS,
-} from '../actions';
+import { GET_TODOS, PUT_TODOS } from '../actions/actions';
 
 function serverReducer (state = {}, action){
   switch (action.type) {

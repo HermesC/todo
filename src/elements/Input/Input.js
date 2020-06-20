@@ -1,10 +1,13 @@
 import { connect } from 'react-redux';
 import React from 'react';
-
 import { createTaskDate, createTaskState } from '../../common/helpers';
-import { inputStateToProps, mapDispatchToProps } from '../../Redux/indexRedux';
+import {
+  inputStateToProps,
+  mapDispatchToProps,
+} from '../../Redux/reactReduxMappers';
 import Controls from '../Controls/Controls';
 import s from './Input.module.css'
+
 
 export const URGENT_SYMBOL = '!срочно'
 class Input extends React.Component{
@@ -27,7 +30,7 @@ class Input extends React.Component{
       completeOffset = 1
       body = this.state.inputValue.replace(URGENT_SYMBOL, '')
     }
-
+//TODO: REFACTOR DEADLINE PROPERTY (TRANSFROM INTO THE DATE OBJECT)
     this.props.addTask({
       title:` Задание ${this.props.lastId}`,
       body: body,

@@ -1,4 +1,4 @@
-import { todoAPI } from '../api/api';
+import { todoAPI } from '../../api/api';
 
  export const GET_TODOS = 'GET_TODOS'
 
@@ -61,7 +61,6 @@ export const getAllTasks = () => async (dispatch) => {
 
   let response = await todoAPI.getAllTasks()
   dispatch(setTodos(response))
-    debugger
   return true;
 }
 export const addTask = (newTask) => async (dispatch) => {

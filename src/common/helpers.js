@@ -3,10 +3,11 @@ export function createTaskDate(referenceDate, offset){
   let resDate
   referenceDate.setDate(referenceDate.getDate() + offset)
   resDate = referenceDate.getFullYear()
-  if (Number(referenceDate.getMonth()) <= 9){
-    resDate += '-' + '0'  + referenceDate.getMonth()
+  let month = referenceDate.getMonth() + 1
+  if (month <= 9){
+    resDate += '-' + '0'  + month
   }else {
-    resDate += '-' +referenceDate.getMonth()
+    resDate += '-' + month
   }
   resDate += '-'  + referenceDate.getDate()
   return resDate
@@ -17,30 +18,14 @@ export function createTaskState (text, defaultState, transitionState= 'urgent', 
     return transitionState
   }else return defaultState
 }
-export function isExpired (checkedDeadline, templateDeadline){
-  const checkedDeadlineObj = {
-    year: checkedDeadline.split('-')[0],
-    month: checkedDeadline.split('-')[1],
-    day: checkedDeadline.split('-')[2]
-  }
-  const templateDeadlineObj = {
-    year: templateDeadline.split('-')[0],
-    month: templateDeadline.split('-')[1],
-    day: templateDeadline.split('-')[2]
-  }
-  if ((checkedDeadlineObj.year <= templateDeadlineObj.year) &&
-      (checkedDeadlineObj.month <= templateDeadlineObj.month) &&
-      (checkedDeadlineObj.day < templateDeadlineObj.day)) return true
+export function isExpired (deadline, currentTime){
+  debugger
+  if (((deadline - currentTime)) <= 0) return true
   return false
 }
 export function truncateText (text, limiter, truncationString = '...'){
   if (text.length > limiter){
     return text.slice(0, limiter - truncationString.length) + truncationString
-  }
-}
-export function bindParameters (func, params){
-  return function () {
-    func.apply(this, params)
   }
 }
 export function sortByPriorities (arr, priorities, comparisonCallback){
@@ -58,7 +43,7 @@ export function taskComparison (task, value){
 export function createLayout (todoArr, COLS){
   const res = []
   let cols = 0, counter = 0, rows = 0
-  todoArr.map((todo, i) => {
+  todoArr.forEach((todo, i) => {
     if (counter >= COLS){
        cols++
        rows = 0
@@ -71,4 +56,8 @@ export function createLayout (todoArr, COLS){
   })
   return res
 
+}
+export function parseDate(stringDate) {
+const tempArrayDate = stringDate.split(/\D/);
+  return new Date(tempArrayDate[0], --tempArrayDate[1], tempArrayDate[2]);
 }

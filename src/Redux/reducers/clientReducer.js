@@ -1,12 +1,12 @@
 import {
   CHANGE,
+  CHANGE_ALL,
   CREATE,
   DELETE,
   DO_ALL,
   SET_FILTER,
-  CHANGE_ALL,
-  SET_TODOS
-} from '../actions';
+  SET_TODOS,
+} from '../actions/actions';
 
 const initialState = {
   filter: 'all',

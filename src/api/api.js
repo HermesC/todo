@@ -2,7 +2,7 @@ import * as axios from 'axios'
 
 
 const axiosTodo = axios.create({
-    baseURL: 'http://todoBackEnd/'
+    baseURL: 'http://z667651e.beget.tech/'
 })
 
 export const todoAPI = {

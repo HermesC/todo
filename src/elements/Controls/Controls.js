@@ -1,13 +1,14 @@
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import React from  'react'
-import { doAllTasks, setFilter } from '../../Redux/actions';
+import { doAllTasks, setFilter } from '../../Redux/actions/actions';
 import s from './Controls.module.css'
 
 const Controls = (props) => {
+  const dispatch = useDispatch()
   function handleChange(event){
-    if (event.target.value != 'doAll'){
-     props.setFilter(event.target.value)
-   } else props.doAllTasks({state: 'done'})
+    if (event.target.value !== 'doAll'){
+     dispatch(setFilter(event.target.value))
+   } else dispatch(doAllTasks({state: 'done'}))
   }
   return (
     <div className={s.Controls}>
@@ -26,4 +27,4 @@ const Controls = (props) => {
     </div>
   )
 }
-export default connect (null, { setFilter , doAllTasks})(Controls)
+export default Controls

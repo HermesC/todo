@@ -1,26 +1,28 @@
-import { BODY_SIZE, TODO_TYPE as todo_changable } from './Todo';
-import { truncateText } from '../../../common/helpers';
+import { TODO_TYPE as todo_changable } from './Todo';
 
 export function handler (event, param){
-   switch (event.type){
-     case 'keypress':
-        keypress(event)
-        break;
-     case 'dblclick':
-        dblclick(event, param)
-        break;
-     case 'mouseover':
-        mouseover(event)
-        break;
-     case 'mouseout':
-        mouseout(event)
-        break;
-     case 'click':
-        click(event)
-        break;
-     case 'blur':
-        blur(event)
-        break;
+  switch (event.type){
+    case 'keypress':
+      keypress(event)
+      break;
+    case 'dblclick':
+      dblclick(event, param)
+      break;
+    case 'mouseover':
+      mouseover(event)
+      break;
+    case 'mouseout':
+      mouseout(event)
+      break;
+    case 'click':
+      click(event)
+      break;
+    case 'blur':
+      blur(event)
+      break;
+    case 'change':
+      blur(event)
+      break
    }
 }
 function dblclick (event){
@@ -57,10 +59,12 @@ function click(event){
   }
 }
 function blur (event){
-  event.target.setAttribute('readonly', true)
+  if (event.currentTarget.type !== 'date') {
+    event.currentTarget.setAttribute('readonly', true)
+  }
+  event.currentTarget.closest('form').querySelector('button').click()
 }
 export function checkDeadline (date){
-
   if ((Number(date) >= 0) && (Number(date) <= 31)) return true
   else return false
 }
