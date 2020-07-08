@@ -19,7 +19,6 @@ export function createTaskState (text, defaultState, transitionState= 'urgent', 
   }else return defaultState
 }
 export function isExpired (deadline, currentTime){
-  debugger
   if (((deadline - currentTime)) <= 0) return true
   return false
 }

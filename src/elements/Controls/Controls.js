@@ -12,6 +12,7 @@ const Controls = (props) => {
   }
   return (
     <div className={s.Controls}>
+    <div>
     <label htmlFor="filters">Фильтры</label>
       <select name="filters" defaultValue="all"onChange={handleChange}>
       	<option value="all">Все</option>
@@ -20,6 +21,7 @@ const Controls = (props) => {
       	<option value="done">Выполненные</option>
         <option value="expired">Просроченные</option>
       </select>
+      </div>
       <div>
         <label htmlFor='doAll'>Выполнить все</label>
         <input onClick={handleChange} type="radio" id="doAll" name="filters" value="doAll"/>
